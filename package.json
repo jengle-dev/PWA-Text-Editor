@@ -1,7 +1,7 @@
 {
-  "name": "JATE",
+  "name": "pwa_text_editor_app_jate",
   "version": "1.0.0",
-  "description": "",
+  "description": "Just Another Text Editor project for KU Coding Bootcamp Week Challenge 19",
   "main": "server.js",
   "scripts": {
     "start:dev": "",
@@ -12,7 +12,7 @@
     "client": ""
   },
   "keywords": [],
-  "author": "",
+  "author": "Jennifer Engle",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
