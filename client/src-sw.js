@@ -26,5 +26,17 @@ warmStrategyCache({
 
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
-// TODO: Implement asset caching
-registerRoute();
+// TODO: Implement asset caching -- used example from mini project 28
+registerRoute(
+  ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
+new offlineFallback({
+  // Name of the cache storage.
+  cacheName: 'asset-cache',
+  plugins: [
+    // This plugin will cache responses with these headers to a maximum-age of 30 days
+    new CacheableResponsePlugin({
+      statuses: [0, 200],
+    }),
+  ],
+})
+);
