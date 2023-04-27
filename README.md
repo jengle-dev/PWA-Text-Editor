@@ -38,4 +38,5 @@ THEN I should have proper build scripts for a webpack application
 ```
 ## References
 * https://www.markdownguide.org/extended-syntax/
+* Class Activities 26 & 28
 
