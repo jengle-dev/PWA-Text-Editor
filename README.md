@@ -40,3 +40,10 @@ THEN I should have proper build scripts for a webpack application
 * https://www.markdownguide.org/extended-syntax/
 * Class Activities 26 & 28
 
+## Credits
+Thanks for your assistance David Love @Cyril1743 and Eli Pruneda @Scorch87 with Webpack Config and package.json. 
+
+## Author
+Jennifer Engle
+
+

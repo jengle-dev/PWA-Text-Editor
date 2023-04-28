@@ -20,53 +20,55 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'TODOs List'
+        title: 'Webpack'
       }),
 
-        new GenerateSW(),
-        new WebpackPwaManifest({
-          // TODO: Create a manifest.json:
-          name: 'My Progressive Web App',
-          short_name: 'MyPWA',
-          description: 'My awesome Progressive Web App!',
-          background_color: '#ffffff',
-          crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
-          icons: [
-            {
-              src: path.resolve('src/assets/icon.png'),
-              sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
-            },
-            {
-              src: path.resolve('src/assets/large-icon.png'),
-              size: '1024x1024' // you can also use the specifications pattern
-            },
-            {
-              src: path.resolve('src/assets/maskable-icon.png'),
-              size: '1024x1024',
-              purpose: 'maskable'
-            }     
-    ]
-  }),
-],
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "src-sw.js"
+      }),
 
-module: {
-  rules: [
-    {
-      test: /\.css$/i,
-      use: ['style-loader', 'css-loader'],
-    },
-    {
-      test: /\.m?js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env'],
-          plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+      new WebpackPwaManifest({
+        name: 'Just Another Text Editor',
+        short_name: "J.A.T.E.",
+        description: "Takes notes with JavaScript syntax highlighting",
+        start_url: "./",
+        orientation: "portrait",
+        display: "standalone",
+        background_color: "#225ca3",
+        theme_color: "#225ca3",
+        filename: 'manifest.js',
+        publicPath: "./",
+        fingerprints: false,
+        icons: [
+          {
+            src: "./src/images/logo.png",
+            sizes: [96, 128, 256, 384, 512],
+            purpose: "any maskable",
+            destination: "./assets/icons",
+          }
+        ]
+      })
+    ],
+    
+        module: {
+          rules: [
+            {
+              test: /\.css$/i,
+              use: ['style-loader', 'css-loader'],
+            },
+            {
+              test: /\.m?js$/,
+              exclude: /node_modules/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env'],
+                  plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+                }
+              }
+            }
+          ],
         },
-      },
-    },
-  ],
-},
-  };
+      };
 };
